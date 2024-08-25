@@ -1,18 +1,25 @@
 package SearchFunctionality;
 
+import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 
@@ -20,16 +27,38 @@ public class SearchTest {
 
     WebDriver driver;
 
-    @BeforeClass
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", "D:\\java\\chromedriver-win64\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+    @BeforeMethod
+    public void setup(Method method) throws MalformedURLException {
+    	boolean useLambdaTest = method.getName().startsWith("lambdaTest");
+
+        if (useLambdaTest) {
+            // Cấu hình cho LambdaTest
+            ChromeOptions browserOptions = new ChromeOptions();
+            browserOptions.setPlatformName("Windows 11");
+            browserOptions.setBrowserVersion("127");
+            HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+            ltOptions.put("username", "thanhthanh342012");
+            ltOptions.put("accessKey", "5NyEs70pIUkjeGoYT4jCWQJ2N4Mqr3wEeflYBzJ5UJZNzVbuU5");
+            ltOptions.put("resolution", "1920x1080");
+            ltOptions.put("build", "SearchFunc");
+            ltOptions.put("project", "SearchFunc");
+            ltOptions.put("selenium_version", "4.23.0");
+            ltOptions.put("w3c", true);
+            ltOptions.put("plugin", "java-testNG");
+            browserOptions.setCapability("LT:Options", ltOptions);
+            driver = new RemoteWebDriver(new URL("https://hub.lambdatest.com/wd/hub"), browserOptions);
+        } else {
+            // Sử dụng ChromeDriver
+            System.setProperty("webdriver.chrome.driver", "D:\\java\\chromedriver-win64\\chromedriver.exe");
+            driver = new ChromeDriver();
+            driver.manage().window().maximize();
+        }
+        
         driver.get("https://pgmgolf.vn/"); 
     }
     
     @Test
-    public void verifySearchIconPresence() {
+    public void lambdaTestVerifySearchIconPresence() {
         WebElement searchIcon = driver.findElement(By.xpath("//*[@id=\"header\"]/div[1]/div[2]/div/div/div/div[2]/div/ul/li[11]/a/div[1]")); 
 
         // Kiểm tra biểu tượng tìm kiếm có hiển thị không
@@ -38,12 +67,12 @@ public class SearchTest {
         // Kiểm tra vị trí của biểu tượng tìm kiếm 
         int iconX = searchIcon.getLocation().getX();
         int iconY = searchIcon.getLocation().getY();
-        Assert.assertEquals(iconX, 1231, "Vị trí ngang của biểu tìm kiếm không đúng.");
-        Assert.assertEquals(iconY, 65, "Vị trí dọc của biểu tìm kiếm không đúng.");
+        Assert.assertEquals(iconX, 1415, "Vị trí ngang của biểu tìm kiếm không đúng.");
+        Assert.assertEquals(iconY, 66, "Vị trí dọc của biểu tìm kiếm không đúng.");
     }
     
     @Test
-    public void verifySearchFieldPosition() throws InterruptedException {
+    public void lambdaTestVerifySearchFieldPosition() throws InterruptedException {
     	driver.findElement(By.xpath("//*[@id=\"header\"]/div[1]/div[2]/div/div/div/div[2]/div/ul/li[11]")).click();
         WebElement searchField = driver.findElement(By.id("searchtext")); 
         
@@ -51,15 +80,25 @@ public class SearchTest {
         Assert.assertTrue(searchField.isDisplayed(), "Trường tìm kiếm không hiển thị trên trang chủ.");
         Thread.sleep(2000);
 
-        // Kiểm tra vị trí của trường tìm kiếm
-        int xPosition = searchField.getLocation().getX();
-        int yPosition = searchField.getLocation().getY();
-        Assert.assertEquals(xPosition, 864, "Vị trí ngang của trường tìm kiếm không đúng.");
-        Assert.assertEquals(yPosition, 163, "Vị trí dọc của trường tìm kiếm không đúng.");
+        // Kiểm tra vị trí, kích thước của trường tìm kiếm
+        int fieldX = searchField.getLocation().getX();
+        int fieldY = searchField.getLocation().getY();
+        Dimension fieldExpectedSize = new Dimension(450, 42);
+        Dimension fieldSize = searchField.getSize();
+        
+        Assert.assertEquals(fieldX, 1048, "Vị trí ngang của trường tìm kiếm không đúng.");
+        Assert.assertEquals(fieldY, 163, "Vị trí dọc của trường tìm kiếm không đúng.");
+        Assert.assertEquals(fieldSize, fieldExpectedSize, "Kích thước của trường tìm kiếm không đúng.");
+        
+        // Kiểm tra khả năng nhập liệu
+        String testInput = "giày golf";
+        searchField.clear();
+        searchField.sendKeys(testInput);
+        Assert.assertEquals(searchField.getAttribute("value"), testInput, "Dữ liệu nhập vào trường tìm kiếm không chính xác.");
     }
   
     @Test
-    public void searchSpecificProduct() throws InterruptedException {
+    public void SearchSpecificProduct() throws InterruptedException {
     	// Thực hiện tìm kiếm với từ khóa "Túi"
     	driver.findElement(By.xpath("//*[@id=\"header\"]/div[1]/div[2]/div/div/div/div[2]/div/ul/li[11]")).click();
         WebElement searchField = driver.findElement(By.id("searchtext"));
@@ -237,7 +276,7 @@ public class SearchTest {
     }
     
     @Test
-    public void verifySearchResultLayout() {
+    public void lambdaTestVerifySearchResultLayout() {
     	// Thực hiện tìm kiếm với từ khóa "gậy golf"
     	driver.findElement(By.xpath("//*[@id=\"header\"]/div[1]/div[2]/div/div/div/div[2]/div/ul/li[11]")).click();
         WebElement searchField = driver.findElement(By.id("searchtext"));
@@ -280,13 +319,13 @@ public class SearchTest {
                 int otherY = otherElement.getLocation().getY();
                 int otherH = otherY + otherElement.getSize().getHeight();
 
-                // Kiểm tra xem có sự chồng chéo nào không
+                // Kiểm tra sự chồng chéo
                 boolean isOverlapping = !(elementW < otherX || elementX > otherW || elementH < otherY || elementY > otherH);
                 Assert.assertFalse(isOverlapping, "Phần tử bị chồng lên nhau.");
             }
         }
 
-        // Kiểm tra layout tổng thể không bị vỡ
+        // Kiểm tra layout tổng thể
         WebElement resultsContainer = driver.findElement(By.cssSelector("#other-sections-wrapper > div > div")); 
         Assert.assertTrue(resultsContainer.isDisplayed(), "Layout của kết quả tìm kiếm bị vỡ.");
     }
@@ -315,8 +354,7 @@ public class SearchTest {
         Assert.assertTrue(productDetailName.toUpperCase().contains(productName.toUpperCase()), "Không hiển thị đúng sản phẩm.");
     }
 
-
-    @AfterClass
+    @AfterMethod
     public void teardown() {
         if (driver != null) {
             driver.quit();
