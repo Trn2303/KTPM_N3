@@ -327,13 +327,13 @@ public class SearchTest {
             for (WebElement otherElement : elements) {
                 if (element.equals(otherElement)) continue;
 
-                // Lấy tọa độ và kích thước của phần tử đầu tiên
+                // Lấy tọa độ, kích thước của phần tử đầu tiên
                 int elementX = element.getLocation().getX();
                 int elementW = elementX + element.getSize().getWidth();
                 int elementY = element.getLocation().getY();
                 int elementH = elementY + element.getSize().getHeight();
 
-                // Lấy tọa độ và kích thước của phần tử thứ hai
+                // Lấy tọa độ, kích thước của phần tử thứ hai
                 int otherX = otherElement.getLocation().getX();
                 int otherW = otherX + otherElement.getSize().getWidth();
                 int otherY = otherElement.getLocation().getY();
@@ -359,7 +359,7 @@ public class SearchTest {
         searchField.sendKeys("gậy golf");
         driver.findElement(By.id("searchsubmit")).click();
 
-        // Chờ và tìm sản phẩm đầu tiên trong kết quả tìm kiếm
+        // Chọn sản phẩm đầu tiên trong kết quả tìm kiếm
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement firstProduct = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"collection-wrapper\"]/div/div[2]/div[1]/div/div[2]/div[1]")));	
         String productName = firstProduct.getText();
