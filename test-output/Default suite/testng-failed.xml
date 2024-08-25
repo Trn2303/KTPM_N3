@@ -6,7 +6,7 @@
       <class name="SearchFunctionality.SearchTest">
         <methods>
           <include name="teardown"/>
-          <include name="lambdaTestVerifySearchFieldPosition"/>
+          <include name="searchWithSpecialCharacters"/>
           <include name="setup"/>
         </methods>
       </class> <!-- SearchFunctionality.SearchTest -->

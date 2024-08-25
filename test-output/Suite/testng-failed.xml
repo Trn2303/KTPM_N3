@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="3" parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="3" parallel="tests" name="EdgeTest(failed)">
+    <parameter name="osVersion" value="Windows 11"/>
+    <parameter name="browserVersion" value="126"/>
+    <parameter name="browserName" value="Edge"/>
+    <classes>
+      <class name="SearchFunctionality.SearchTestParallel">
+        <methods>
+          <include name="teardown"/>
+          <include name="lambdaTestVerifySearchIconPresence"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- SearchFunctionality.SearchTestParallel -->
+    </classes>
+  </test> <!-- EdgeTest(failed) -->
+  <test thread-count="3" parallel="tests" name="ChromeTest(failed)">
+    <parameter name="osVersion" value="Windows 11"/>
+    <parameter name="browserVersion" value="124"/>
+    <parameter name="browserName" value="Chrome"/>
+    <classes>
+      <class name="SearchFunctionality.SearchTestParallel">
+        <methods>
+          <include name="teardown"/>
+          <include name="lambdaTestVerifySearchIconPresence"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- SearchFunctionality.SearchTestParallel -->
+    </classes>
+  </test> <!-- ChromeTest(failed) -->
+</suite> <!-- Failed suite [Suite] -->

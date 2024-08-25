@@ -14,12 +14,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+//import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+//import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 
@@ -27,15 +29,14 @@ public class SearchTest {
 
     WebDriver driver;
 
+//    @Parameters({"browserName", "browserVersion", "osVersion"})
+
     @BeforeMethod
     public void setup(Method method) throws MalformedURLException {
     	boolean useLambdaTest = method.getName().startsWith("lambdaTest");
 
         if (useLambdaTest) {
-            // Cấu hình cho LambdaTest
-            ChromeOptions browserOptions = new ChromeOptions();
-            browserOptions.setPlatformName("Windows 11");
-            browserOptions.setBrowserVersion("127");
+            // Cấu hình cho LambdaTest 
             HashMap<String, Object> ltOptions = new HashMap<String, Object>();
             ltOptions.put("username", "thanhthanh342012");
             ltOptions.put("accessKey", "5NyEs70pIUkjeGoYT4jCWQJ2N4Mqr3wEeflYBzJ5UJZNzVbuU5");
@@ -44,9 +45,28 @@ public class SearchTest {
             ltOptions.put("project", "SearchFunc");
             ltOptions.put("selenium_version", "4.23.0");
             ltOptions.put("w3c", true);
-            ltOptions.put("plugin", "java-testNG");
+            ltOptions.put("plugin", "java-testNG");       
+            ChromeOptions browserOptions = new ChromeOptions();
+            browserOptions.setPlatformName("Windows 11");
+            browserOptions.setBrowserVersion("127");
             browserOptions.setCapability("LT:Options", ltOptions);
             driver = new RemoteWebDriver(new URL("https://hub.lambdatest.com/wd/hub"), browserOptions);
+            
+//            if(browserName.equalsIgnoreCase("Chrome")) {
+//        		ChromeOptions browserOptions = new ChromeOptions();
+//                browserOptions.setPlatformName("osVersion");
+//                browserOptions.setBrowserVersion("browserVersion");
+//                browserOptions.setCapability("LT:Options", ltOptions);
+//                driver = new RemoteWebDriver(new URL("https://hub.lambdatest.com/wd/hub"), browserOptions);
+//        	}
+//        	else if (browserName.equalsIgnoreCase("Edge")) {
+//        		EdgeOptions browserOptions = new EdgeOptions();
+//                browserOptions.setPlatformName("osVersion");
+//                browserOptions.setBrowserVersion("browserVersion");
+//                browserOptions.setCapability("LT:Options", ltOptions);
+//                driver = new RemoteWebDriver(new URL("https://hub.lambdatest.com/wd/hub"), browserOptions);
+//        	}
+
         } else {
             // Sử dụng ChromeDriver
             System.setProperty("webdriver.chrome.driver", "D:\\java\\chromedriver-win64\\chromedriver.exe");
@@ -98,7 +118,7 @@ public class SearchTest {
     }
   
     @Test
-    public void SearchSpecificProduct() throws InterruptedException {
+    public void searchSpecificProduct() throws InterruptedException {
     	// Thực hiện tìm kiếm với từ khóa "Túi"
     	driver.findElement(By.xpath("//*[@id=\"header\"]/div[1]/div[2]/div/div/div/div[2]/div/ul/li[11]")).click();
         WebElement searchField = driver.findElement(By.id("searchtext"));

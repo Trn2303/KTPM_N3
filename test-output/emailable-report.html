@@ -9,10 +9,56 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">1</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">49,983</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Default test</a></td><td class="num">13</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">206,918</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">SearchFunctionality.SearchTest</td><td><a href="#m0">lambdaTestVerifySearchFieldPosition</a></td><td rowspan="1">1724568460730</td><td rowspan="1">5577</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">SearchFunctionality.SearchTest</td><td><a href="#m0">searchWithSpecialCharacters</a></td><td rowspan="1">1724577442040</td><td rowspan="1">6501</td></tr><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="13">SearchFunctionality.SearchTest</td><td><a href="#m1">checkPaginationInSearchResults</a></td><td rowspan="1">1724577293776</td><td rowspan="1">9499</td></tr><tr class="passedeven"><td><a href="#m2">lambdaTestVerifySearchFieldPosition</a></td><td rowspan="1">1724577317890</td><td rowspan="1">5191</td></tr><tr class="passedeven"><td><a href="#m3">lambdaTestVerifySearchIconPresence</a></td><td rowspan="1">1724577365810</td><td rowspan="1">1083</td></tr><tr class="passedeven"><td><a href="#m4">lambdaTestVerifySearchResultLayout</a></td><td rowspan="1">1724577381427</td><td rowspan="1">10862</td></tr><tr class="passedeven"><td><a href="#m5">searchSpecificProduct</a></td><td rowspan="1">1724577402428</td><td rowspan="1">5347</td></tr><tr class="passedeven"><td><a href="#m6">searchWithEmptyInput</a></td><td rowspan="1">1724577410756</td><td rowspan="1">6291</td></tr><tr class="passedeven"><td><a href="#m7">searchWithLeadingWhitespace</a></td><td rowspan="1">1724577419893</td><td rowspan="1">8220</td></tr><tr class="passedeven"><td><a href="#m8">searchWithNonExistentKeyword</a></td><td rowspan="1">1724577431308</td><td rowspan="1">7470</td></tr><tr class="passedeven"><td><a href="#m9">searchWithUpperCaseKeyword</a></td><td rowspan="1">1724577451506</td><td rowspan="1">8515</td></tr><tr class="passedeven"><td><a href="#m10">searchWithoutAccents</a></td><td rowspan="1">1724577463070</td><td rowspan="1">7718</td></tr><tr class="passedeven"><td><a href="#m11">verifyKeywordLengthHandling</a></td><td rowspan="1">1724577473775</td><td rowspan="1">7760</td></tr><tr class="passedeven"><td><a href="#m12">verifySearchSuggestions</a></td><td rowspan="1">1724577486130</td><td rowspan="1">4244</td></tr><tr class="passedeven"><td><a href="#m13">viewProductDetailAfterSearch</a></td><td rowspan="1">1724577493294</td><td rowspan="1">3597</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">SearchFunctionality.SearchTest#lambdaTestVerifySearchFieldPosition</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Default test</h2><h3 id="m0">SearchFunctionality.SearchTest#searchWithSpecialCharacters</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: Xử lý ký tự đặc biệt trong tìm kiếm không chính xác. expected [KHÔNG TÌM THẤY KẾT QUẢ TÌM KIẾM PHÙ HỢP CHO:  TẤT CẢ SẢN PHẨM / TỪ KHÓA: @$#]]] but found [KẾT QUẢ TÌM KIẾM: TẤT CẢ SẢN PHẨM / TỪ KHÓA: @$]
+	at org.testng.Assert.fail(Assert.java:99)
+	at org.testng.Assert.failNotEquals(Assert.java:1037)
+	at org.testng.Assert.assertEqualsImpl(Assert.java:140)
+	at org.testng.Assert.assertEquals(Assert.java:122)
+	at org.testng.Assert.assertEquals(Assert.java:629)
+	at SearchFunctionality.SearchTest.searchWithSpecialCharacters(SearchTest.java:151)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:173)
+	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:824)
+	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:146)
+	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at org.testng.TestRunner.privateRun(TestRunner.java:794)
+	at org.testng.TestRunner.run(TestRunner.java:596)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+	at org.testng.TestNG.runSuites(TestNG.java:1063)
+	at org.testng.TestNG.run(TestNG.java:1031)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">SearchFunctionality.SearchTest#checkPaginationInSearchResults</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">SearchFunctionality.SearchTest#lambdaTestVerifySearchFieldPosition</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">SearchFunctionality.SearchTest#lambdaTestVerifySearchIconPresence</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m4">SearchFunctionality.SearchTest#lambdaTestVerifySearchResultLayout</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m5">SearchFunctionality.SearchTest#searchSpecificProduct</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m6">SearchFunctionality.SearchTest#searchWithEmptyInput</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m7">SearchFunctionality.SearchTest#searchWithLeadingWhitespace</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m8">SearchFunctionality.SearchTest#searchWithNonExistentKeyword</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m9">SearchFunctionality.SearchTest#searchWithUpperCaseKeyword</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m10">SearchFunctionality.SearchTest#searchWithoutAccents</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m11">SearchFunctionality.SearchTest#verifyKeywordLengthHandling</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m12">SearchFunctionality.SearchTest#verifySearchSuggestions</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m13">SearchFunctionality.SearchTest#viewProductDetailAfterSearch</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>
